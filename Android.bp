@@ -1,0 +1,44 @@
+cc_binary {
+    name: "notcat_client",
+    srcs: ["src/notcat_client.cpp"],
+    shared_libs: [
+        "notcat_lib_ffi",
+        "liblog",
+        ],
+    header_libs: ["notcat_lib_ffi_headers"],
+    vendor: true,
+}
+
+rust_binary {
+    name: "notcat_client_rust",
+    srcs: ["src/notcat_client.rs"],
+    rustlibs: [
+        "notcat_lib",
+    ],
+    vendor: true,
+}
+
+android_app {
+    name:               "NotCatTest",
+    srcs:               ["NotCatTest/app/src/main/java/**/*.kt"],
+    manifest:           "NotCatTest/app/src/main/AndroidManifest.xml",
+    resource_dirs:      ["NotCatTest/app/src/main/res"],
+    jni_libs:           ["notcat_lib_ffi"],
+    static_libs: [
+        "androidx.core_core-ktx",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "androidx.activity_activity-compose",
+        "androidx.compose.ui_ui",
+        "androidx.compose.ui_ui-graphics",
+        "androidx.compose.ui_ui-tooling-preview",
+        "androidx.compose.material3_material3",
+        "androidx.compose.runtime_runtime",
+    ],
+    vendor:   true,
+    min_sdk_version: "34",
+    sdk_version: "current",
+    use_embedded_native_libs: true,
+    arch: {
+        x86_64: { enabled: true },
+    },
+}
