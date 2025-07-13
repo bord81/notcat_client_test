@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.notcattest.ui.theme.NotCatTestTheme
 import com.notcat.NotCatClient
+import com.notcat.NotCatClient.Priority
 
 class MainActivity : ComponentActivity() {
     private var notcat_logger: NotCatClient? = null
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        notcat_logger?.Log("Hello from Kotlin example!") 
+        notcat_logger?.Log(Priority.INFO, "Hello from Kotlin example!") 
     }
 
     override fun onDestroy() {
