@@ -9,6 +9,10 @@ The following third-party components are used in this project:
    Copyright (c) 2018 Developers of the Rand project.
    Copyright (c) 2013-2017 The Rust Project Developers.
    
+2. AndroidX Libraries (e.g., androidx.core, androidx.lifecycle, etc.)  
+   License: Apache License, Version 2.0  
+   Copyright (c) 2011 The Android Open Source Project
+
 ---
 
 Each of the above components is distributed under the terms of either the MIT license or the Apache License, Version 2.0.
