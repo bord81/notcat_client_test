@@ -1,6 +1,6 @@
 # notcat_examples — Example Clients for notcatd
 
-This repository contains example projects demonstrating how to use [`notcat_lib`](https://github.com/your-org/notcat_lib) to communicate with the [`notcatd`](https://github.com/your-org/notcatd) logging daemon. It showcases client implementations in **C++**, **Rust**, and **Kotlin/Android**, all integrated into the AOSP build system.
+This repository contains example projects demonstrating how to use [`notcat_lib`](https://github.com/bord81/notcat_lib) to communicate with the [`notcatd`](https://github.com/bord81/notcatd) logging daemon. It showcases client implementations in **C++**, **Rust**, and **Kotlin/Android**, all integrated into the AOSP build system.
 
 ---
 
