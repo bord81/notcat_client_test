@@ -1,8 +1,6 @@
 package com.notcat
 
-
-
-class NotCatClient private constructor(val handle: Long) {
+class NotCatClient private constructor() {
         
     companion object {
         init {
@@ -10,10 +8,13 @@ class NotCatClient private constructor(val handle: Long) {
         }
 
         @JvmStatic
-        fun Init(): NotCatClient? {
-            val h = nativeConnect("/dev/socket/notcat_socket")
-            return if (h != 0L) NotCatClient(h) else null
+        fun Init(): Int {
+            return nativeInit(1)
         }
+    @JvmStatic
+    fun Log(priority: Priority, msg: String): Unit = nativeLog(priority.level, msg)
+    @JvmStatic
+    fun Close(): Boolean = nativeClose() == 0
     }
 
     enum class Priority(val level: Int) {
@@ -23,12 +24,8 @@ class NotCatClient private constructor(val handle: Long) {
         WARN(3),
         ERROR(4)
     }
-
-    fun Log(priority: Priority, msg: String): Boolean = nativeLog(handle, priority.level, msg) == 0
-
-    fun Close(): Boolean = nativeClose(handle) == 0
 }
 
-private external fun nativeConnect(adress: String): Long
-private external fun nativeLog(handle: Long, priority: Int, msg: String): Int
-private external fun nativeClose(handle: Long): Int
+private external fun nativeInit(sinkType: Int): Int
+private external fun nativeLog(priority: Int, msg: String): Unit
+private external fun nativeClose(): Int

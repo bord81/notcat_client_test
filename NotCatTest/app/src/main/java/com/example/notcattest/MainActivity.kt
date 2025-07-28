@@ -16,11 +16,10 @@ import com.notcat.NotCatClient
 import com.notcat.NotCatClient.Priority
 
 class MainActivity : ComponentActivity() {
-    private var notcat_logger: NotCatClient? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        notcat_logger = NotCatClient.Init()
+        NotCatClient.Init()
         enableEdgeToEdge()
         setContent {
             NotCatTestTheme {
@@ -32,11 +31,11 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        notcat_logger?.Log(Priority.INFO, "Hello from Kotlin example!") 
+        NotCatClient.Log(Priority.INFO, "Hello from Kotlin example!") 
     }
 
     override fun onDestroy() {
-        notcat_logger?.Close()
+        NotCatClient.Close()
     }
 }
 

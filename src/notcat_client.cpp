@@ -8,27 +8,21 @@
 using namespace std::chrono_literals;
 
 int main() {
-    auto* client = notcat_connect("/dev/socket/notcat_socket");
-    if (!client) {
+    auto conn_res = notcat_init(SINK_TYPE_LOCAL_FILE | SINK_TYPE_ANDROID_LOGCAT);
+    if (conn_res) {
         std::cerr << "connect failed\n";
         return 1;
     }
-    if (notcat_log(client, LOG_INFO, "Hello C++!\n") != 0) {
-        std::cerr << "send failed\n";
-    }
+    notcat_log(LOG_INFO, "Hello C++!\n");
     std::mt19937_64 eng{std::random_device{}()};
     for (int i = 0; i < 1000; ++i) {
         std::uniform_int_distribution<int> dist(5, 100);
         std::string message = "Message number from C++ " + std::to_string(i) + "\n";
-        if (notcat_log(client, LOG_DEBUG, message.c_str()) != 0) {
-            std::cerr << "send failed\n";
-        }
+        notcat_log(LOG_DEBUG, message.c_str());
         std::this_thread::sleep_for(dist(eng) * 1ms);
     }
-    if (notcat_log(client, LOG_INFO, "C++ finished test\n") != 0) {
-        std::cerr << "send failed\n";
-    }
+    notcat_log(LOG_INFO, "C++ finished test\n");
     std::this_thread::sleep_for(876000h);
-    notcat_close(client);
+    notcat_close();
     return 0;
 }
