@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        NotCatClient.Log(Priority.INFO, "Hello from Kotlin example!") 
+        NotCatClient.Log(Priority.INFO, "NotCatClient Kotlin", "Hello from Kotlin example!") 
     }
 
     override fun onDestroy() {

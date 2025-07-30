@@ -12,7 +12,7 @@ class NotCatClient private constructor() {
             return nativeInit(1)
         }
     @JvmStatic
-    fun Log(priority: Priority, msg: String): Unit = nativeLog(priority.level, msg)
+    fun Log(priority: Priority, tag: String, msg: String): Unit = nativeLog(priority.level, tag, msg)
     @JvmStatic
     fun Close(): Boolean = nativeClose() == 0
     }
@@ -27,5 +27,5 @@ class NotCatClient private constructor() {
 }
 
 private external fun nativeInit(sinkType: Int): Int
-private external fun nativeLog(priority: Int, msg: String): Unit
+private external fun nativeLog(priority: Int, tag: String, msg: String): Unit
 private external fun nativeClose(): Int
